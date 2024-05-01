@@ -1,0 +1,294 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es6 JavaScript</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+    <div class="movie-list">
+        <div class="container">
+            <div class="row" id="movie-row">
+               
+                
+            </div>
+        </div>
+    </div>
+<script type="module">
+    //In JavaScript, there are two types of functions. You have normal functions and arrow functions. 
+    //Arrow functions was introduced in ES6. And it introduced a simple and shorter way to create functions.
+    //Arrow functions cannot be declared
+    //No arguments object in arrow functions
+    //Arrow functions cannot be accessed before initialization
+    //Arrow functions do not create their own this binding
+
+    //normal function or function declaration
+    // const person = {
+    //     name:"vinoth",
+    //     age:31,
+    //     display: function(){
+    //         console.log("Parent fun", this)
+    //     }
+    // }
+    // person.display();
+
+
+    //Callback and callback hell => Javascript where callbacks are nested within callbacks to the where the code is difficult to read.
+    //Old pattern to handle asynchronous function. Use Promises + async/await to avoid callback hell.
+    // function fun1(callback){
+    //     setTimeout(()=>{
+    //         console.log("Function one ")
+    //         callback(); //Hello => 
+    //     }, 2000)
+    // }
+    // function fun2(callback){
+    //     setTimeout(()=>{
+    //         console.log("Function two ")
+    //         callback(); //Hello => 
+    //     }, 1500)
+    // }
+    // function fun3(callback){
+    //     setTimeout(()=>{
+    //         console.log("Function three ")
+    //         callback(); //Hello => 
+    //     }, 1200)
+    // }
+    // function fun4(callback){
+    //     setTimeout(()=>{
+    //         console.log("Function foure ")
+    //         callback(); //Hello => 
+    //     }, 1000)
+    // }
+
+    // fun1(function(){
+    //     fun2(function(){
+    //         fun3(function(){
+    //             fun4(function(){
+    //                 console.log("All callback has completed!")
+    //             });
+    //         });
+    //     });
+    // });
+    
+    //shallow copy and deep copy
+    // let arr1 = [1, 5, 6, 8];
+    // let arr2 = [...arr1, 10, false];
+
+    // console.log(arr1)
+    // console.log(arr2)
+
+    // let obj1 = {a: 1, b: 2, c: {n: 5, x: 10}};
+    // let obj2 = {...obj1, z: ["one", "two"]};
+    // console.log(obj1);
+    // console.log(obj2);
+
+    //Promises => An Object that manages asynchronous operations.
+    //            Wrap a promises object around {asynchronous code}
+    //            Promises return a value
+    //            PENDING -> RESOLVED or REJECTED
+    //            new Promise((resolve, reject) => {asynchronous code})
+    
+    function fun1(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                console.log("Function one promise")
+                resolve({data:{status: 200, message: "Success fun 1"}});
+                // reject({data:{status: 401, message: "Given request is not found"}});
+            }, 2000)
+        })
+    }
+
+    function fun2(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                console.log("Function two promise ")
+                resolve({data:{status: 200, message: "Success fun 2"}});
+                // reject({data:{status: 401, message: "fun 2 Given request is not found "}});
+            }, 1000)
+        })
+    }
+
+    function fun3(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                // console.log("Function one ")
+                resolve({data:{status: 200, message: "Success fun 3"}});
+                // reject({data:{status: 401, message: "Given request is not found"}});
+            }, 500)
+        })
+    }
+  
+
+    //Output
+    // Promise.all([fun1(), fun2(), fun3()])
+    // .then((res) => {
+    //     console.log("Promise fullfilled: ", res)
+    // })
+    // .catch((err) => {
+    //     console.log("Promise rejected function: ", err)
+    // })
+
+    // let runAllFun = async () =>{
+    //     try{
+    //         const response1 = await fun1();
+    //         console.log("Fun 1 success", response1);
+    //         const response2 = await fun2();
+    //         console.log("Fun 2 success", response2);
+    //     }
+    //     catch(err){
+    //         console.log(err)
+    //     }
+    // }
+    // runAllFun();
+
+    //OOPS => Object Oriented Programming
+    // Constructor => A constructor is a special function that creates and initializes an object instance of a class. In JavaScript, a constructor gets called when an object is created using the new  keyword. The purpose of a constructor is to create a new object and set values for any existing object properties.
+    
+    // function Product(b, n, p){
+    //     this.brand = b;
+    //     this.name = n;
+    //     this.price = p;
+    //     this.displayProduct = function(){
+    //         console.log(`Brand: ${this.brand}`)
+    //         console.log(`Name: ${this.name}`)
+    //         console.log(`Price: ${this.price}`)
+    //     };
+    //     this.calculateTotal = function(tax){
+    //         return this.price + (this.price * tax);
+    //     }
+    // }
+    
+    // const product1 = new Product("Apple", "iPhone 11", 30_000);//{}
+    // const product2 = new Product("Apple", "iPhone 12", 50_000);//{}
+    // console.log(product1);
+
+    // product1.displayProduct();
+    // const prodict1Total = product1.calculateTotal(0.05);
+    // console.log(`Total price of product 1 Rs.${prodict1Total}`);
+
+    // product2.displayProduct();
+    // const prodict2Total = product2.calculateTotal(0.05);
+    // console.log(`Total price of product 2 Rs.${prodict2Total}`);
+
+
+    // Class => Classes are a template for creating objects. They encapsulate data with code to work on that data. 
+    //Inheritance -> allows a new class to inherit properties and methods from an existing class (Parent -> child) help with code reusability
+    
+    //Movie => Theatres => Show time => seats 
+
+    import ShowMovie, {hello, findUser} from "./js/main.js";
+
+//     console.log(findUser);
+//     hello();
+
+//     const movie1 = new ShowMovie("Rathnam", 250, 3.5);
+//     const movie2 = new ShowMovie("Rathnam", 250, 3.5);
+//     movie1.seatBooking({id: 1, seat:'A1', isBooked:true})
+//     movie1.seatBooking({id: 2, seat:'A2', isBooked:true})
+//     console.log(movie1);
+//     console.log("Users", ShowMovie.users);
+
+//     class Theatres extends ShowMovie {
+//         constructor(name, price, rating, screen){
+//             super(name, price, rating);
+//             this.theatre = "AGS";
+//             this.screen = "screen "+screen;
+//         }
+
+//         showScreen(){
+//             console.log("Theatres show screen: ", this.screen);
+//             return this;
+//         }
+
+//         screensItem(){
+//             console.log("Screen sccusses item")
+//         }
+//    }
+
+//    const theatre = new Theatres("Move 2", 350, 4, 2);
+//    theatre.showScreen().screensItem();
+
+   //Module => import and export => function or variable
+   //Named export and default export 
+
+    
+    import {moviesData} from "./js/movies.js";
+    
+    const movieRow = document.getElementById("movie-row");
+    function loadMovieData(){
+        movieRow.innerHTML = "";
+        const movieCards = moviesData.map((item, inx) => {
+            return `<div class="col-lg-3">
+                        <div class="card">
+                            <a href="movie-details.html?movie=${item.movieName}" class="card-link"></a>
+                            <img src="${item.img}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.movieName}</h5>
+                                <p class="card-text">${item.type}</p>
+                                
+                            </div>
+                        </div>
+                    </div>`
+        }).join("");
+        movieRow.innerHTML = movieCards;
+    }
+    loadMovieData();
+
+    
+
+</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="movie-list">
+        <div class="container">
+            <div class="row" id="movie-row">
+
+
+            </div>
+        <!-- </div> -->
+    </div>
+    <script src="js/movies.js"></script>
+
+    <script type="module">
+        
+        const moviesDatas=moviesData;
+
+        const movieRow = document.getElementById("movie-row");
+        function loadMovieData() {
+            movieRow.innerHTML = "";
+            const movieCards = moviesDatas.map((item, inx) => {
+                return `<div class="col-lg-3">
+                        <div class="card">
+                            <a href="movie-details.html?movie=${item.movieName}" class="card-link"></a>
+                            <img src="${item.img}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.movieName}</h5>
+                                <p class="card-text">${item.type}</p>
+                                
+                            </div>
+                        </div>
+                    </div>`
+            }).join("");
+            movieRow.innerHTML = movieCards;
+        }
+        loadMovieData();
+    </script>
+</body>
+
+</html>
